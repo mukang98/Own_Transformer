@@ -19,7 +19,7 @@ class PositionalEncoding(nn.Module):
         pos = pos.float().unsqueeze(dim=1) # (max_length * 1)
 
         # _2i = torch.arange(0, dim, step=2, device=device) # (dim/2) 
-        # 1.忘记统一为浮点数了
+        # 1.忘记统一为浮点数了 
         _2i = torch.arange(0, dim, step=2, device=device).float() # (dim/2)
         self.encoding[:, 0::2] = torch.sin(pos / 10000 ** (_2i / dim))
         self.encoding[:, 1::2] = torch.cos(pos / 10000 ** (_2i / dim))
