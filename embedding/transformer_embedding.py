@@ -9,6 +9,35 @@ from postional_encoding import PositionalEncoding
 # class Embedding(nn.Module):
 #1. 起名不准确
 class TransformerEmbedding(nn.Module):
+    """
+    Transformer Embedding layer that combines token and positional embeddings.
+
+    This class provides an embedding layer that combines token embeddings and
+    positional encodings, followed by dropout. It's typically used as the initial
+    layer in transformer-based models.
+
+    Args:
+        vocab_size (int): Size of the vocabulary. It represents the number of unique tokens.
+        dim (int): Dimensionality of the embeddings. It determines the size of the output embedding vectors.
+        max_length (int): Maximum length of the input sequences. This sets the maximum length for positional encodings.
+        drop_prob (float): Dropout probability. The fraction of the input units to drop during training.
+        device (torch.device): The device on which to place the embeddings (e.g., 'cpu' or 'cuda').
+
+    Inputs:
+        - input (torch.Tensor): A tensor of shape (B, N), where B is the batch size and N is the sequence length.
+          Each element in the tensor represents a token index in the vocabulary.
+
+    Outputs:
+        - output (torch.Tensor): A tensor of shape (B, N, S), where B is the batch size, N is the sequence length,
+          and S is the embedding dimension (dim). This tensor combines token embeddings and positional encodings,
+          with dropout applied.
+
+    Example:
+        >>> embedding_layer = TransformerEmbedding(vocab_size=10000, dim=512, max_length=100, drop_prob=0.1, device='cuda')
+        >>> input_tensor = torch.randint(0, 10000, (32, 50)).cuda()  # Example input
+        >>> output_tensor = embedding_layer(input_tensor)
+        >>> print(output_tensor.shape)  # Should print torch.Size([32, 50, 512])
+    """
     # def __init__(self):
     #     self.embedding = Input_Embedding()
     #     self.postion = Positional_Encoding()
@@ -42,6 +71,6 @@ if __name__ == "__main__":
     embedding_layer = TransformerEmbedding(vocab_size, embedding_dim, max_length=256, drop_prob=0.9,device="cpu")
     output_tensor = embedding_layer(input_tensor)
     print("Input Tensor:")
-    print(input_tensor)
+    print(input_tensor.shape)
     print("Output Tensor:")
-    print(output_tensor)
+    print(output_tensor.shape)
