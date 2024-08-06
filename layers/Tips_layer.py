@@ -62,3 +62,18 @@ for name, param in model.named_parameters():
     print(param)
 
 # %%
+# ================================================================= #
+#                        2.mean & var                               #
+# ================================================================= #
+import torch
+tensor_a = torch.arange(24).view(2,3,4).float()
+print(tensor_a)
+mean = tensor_a.mean(dim=-1) #LN对于单个样本的全部特征进行norm
+print(mean)
+print(mean.shape)
+mean_keep = tensor_a.mean(dim=-1, keepdim=True)
+print(mean_keep.shape)
+
+var = tensor_a.var(dim = -1, unbiased=False, keepdim=True) #有偏方差
+print(var)
+# %%

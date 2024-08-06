@@ -8,7 +8,7 @@ class ScaleDotProductAttention(nn.Module):
     # def forward(self, q, k, v, mask): 1.mask默认为None
     def forward(self,q, k, v, mask=None):
         # batch_size, head_nums, seq_length, d_model = k.size() :1.命名问题 应该是d_tensor
-        batch_size, head_nums, seq_length, d_tensor = k.size()
+        batch_size, head_nums, seq_length, d_tensor = k.size() #B*H*N*S
         
         k_t = k.transpose(2,3)
         # score = q @ k / math.sqrt(d_model)  1.缺少括号
@@ -17,6 +17,6 @@ class ScaleDotProductAttention(nn.Module):
         # if mask:  1. 与mask=None对应
         if mask is not None: 
             score = score.masked_fill(mask == 0, -10000)
-        score = self.softmax(score)
-        v = score @ v
-        return v, score
+        score = self.softmax(score) #B*H*N*N
+        v = score @ v #B*H*N*S
+        return v, score 
