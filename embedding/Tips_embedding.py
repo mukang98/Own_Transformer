@@ -11,7 +11,7 @@ import torch
 import torch.nn as nn
 vocab_size = 10000
 embedding_dim = 512
-embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx=1) 
+embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx=1)
 #nn.Embedding接收的第一个参数是词汇表的大小，第二个是嵌入向量的维度，padding_idx是为了统一输入长度的填充即对于index为1的输入置0
 input_dices = torch.tensor([[1,4,226,844], [552,8855,4353,1]]) #B*N
 #通过nn.Embedding创建的embedding方法，接收的输入是每行代表每句话，每列代表每句话的每个token 

@@ -21,9 +21,9 @@ class MultiHeadAttention(nn.Module):
         # v = self.split(v)
         q, k, v = self.w_q(q), self.w_k(k), self.w_v(v)
         q, k, v = self.split(q), self.split(k), self.split(v)
-        out, attention = self.dot_product(q, k ,v, mask=mask)
+        out, attention = self.dot_product(q, k ,v, mask=mask) 
         concat = self.concat(out)
-        concat_out = self.concat_out(concat)
+        concat_out = self.concat_out(concat) #B*N*S
         return concat_out
 
     def split(self, input):
