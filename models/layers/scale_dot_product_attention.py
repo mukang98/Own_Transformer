@@ -16,7 +16,7 @@ class ScaleDotProductAttention(nn.Module):
  
         # if mask:  1. 与mask=None对应
         if mask is not None: 
-            score = score.masked_fill(mask == 0, -10000)
+            score = score.masked_fill(mask == 0, -10000) #float("-inf")
         score = self.softmax(score) #B*H*N*N
         v = score @ v #B*H*N*S
         return v, score 
