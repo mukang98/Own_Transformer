@@ -12,7 +12,7 @@ class ScaleDotProductAttention(nn.Module):
         
         k_t = k.transpose(2,3)
         # score = q @ k / math.sqrt(d_model)  1.缺少括号
-        score (q @ k) / math.sqrt(d_tensor) 
+        score =  (q @ k) / math.sqrt(d_tensor) 
  
         # if mask:  1. 与mask=None对应
         if mask is not None: 
