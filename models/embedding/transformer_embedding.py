@@ -45,10 +45,10 @@ class TransformerEmbedding(nn.Module):
     # 1.没有传参的意识，传参其实是自己对于每个part更准确的认识
     # 2.各种命名的问题
     # 3.忘记调用nn.Module的构造函数
-    def __init__(self, vocab_size, dim, max_length, drop_prob, device):
+    def __init__(self, vocab_size, d_model, max_length, drop_prob, device):
         super().__init__()
-        self.tok_emb = TokenEmbedding(vocab_size, dim)
-        self.pos_emb = PositionalEncoding(max_length, dim, device)
+        self.tok_emb = TokenEmbedding(vocab_size, d_model)
+        self.pos_emb = PositionalEncoding(max_length, d_model, device)
         self.drouput = nn.Dropout(p=drop_prob)
     # def forward(self, input):
     #     emb = self.embedding(input)
