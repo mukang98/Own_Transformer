@@ -26,7 +26,7 @@ class EncoderLayer(nn.Module):
         out = self.fc(out)
         out = self.dropout2(out)
         out = self.norm2(out + _out)
-        # out += _out #1.缺了最后一个norm
+        # out += _out  #1.缺了最后一个norm
         return out
 
 

@@ -27,7 +27,7 @@ class DecoderLayer(nn.Module):
 
         if enc is not None: #1. 没考虑为None的情况
             _out = out
-            out = self.enc_dec_attention(q=dec, k=enc, v=enc, mask = src_mask) #1. 忘记这里的mask
+            out = self.enc_dec_attention(q=out, k=enc, v=enc, mask = src_mask) #1. 忘记这里的mask
             out = self.dropout2(out)
             out = self.norm2(out + _out)
 
